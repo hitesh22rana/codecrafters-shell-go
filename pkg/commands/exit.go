@@ -6,7 +6,9 @@ import (
 	"strconv"
 )
 
-func Exit(args []string) error {
+type Exit struct{}
+
+func (c *Exit) Execute(args []string) error {
 	if len(args) != 1 {
 		return fmt.Errorf("exit: too many arguments")
 	}

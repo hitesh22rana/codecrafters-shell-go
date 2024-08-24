@@ -5,7 +5,9 @@ import (
 	"strings"
 )
 
-func Echo(args []string) error {
+type Echo struct{}
+
+func (c *Echo) Execute(args []string) error {
 	fmt.Println(strings.Join(args, " "))
 	return nil
 }

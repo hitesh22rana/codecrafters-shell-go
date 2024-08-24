@@ -3,45 +3,38 @@ package commands
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
-var cmdsType = make(map[string]string)
+type Type struct{}
 
-func init() {
-	paths := strings.Split(os.Getenv("PATH"), ":")
-
-	for _, path := range paths {
-		if _, err := os.Stat(path); os.IsNotExist(err) {
-			continue
-		}
-
-		files, err := os.ReadDir(path)
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-
-		for _, file := range files {
-			if file.IsDir() {
-				continue
-			}
-
-			if _, ok := cmdsType[file.Name()]; !ok {
-				cmdsType[file.Name()] = path + "/" + file.Name()
-			}
-		}
-	}
+func NewType() *Type {
+	return &Type{}
 }
-func Type(args []string) error {
+
+func (c *Type) Execute(args []string) error {
 	for _, command := range args {
-		if command == "echo" || command == "exit" || command == "type" {
+		switch command {
+		case "echo", "exit", "type":
 			fmt.Printf("%s is a shell builtin\n", command)
-		} else if path, ok := cmdsType[command]; ok {
-			fmt.Printf("%s is %s\n", command, path)
-		} else {
-			fmt.Printf("%s: not found\n", command)
+		default:
+			paths := strings.Split(os.Getenv("PATH"), ":")
+			var isFound bool = false
+			for _, path := range paths {
+				fullPath := filepath.Join(path, command)
+				if _, err := os.Stat(fullPath); !os.IsNotExist(err) {
+					fmt.Printf("%s is %s\n", command, fullPath)
+					isFound = true
+					break
+				}
+			}
+
+			if !isFound {
+				fmt.Printf("%s: not found\n", command)
+			}
 		}
 	}
+
 	return nil
 }
