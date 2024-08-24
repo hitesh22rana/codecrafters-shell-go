@@ -19,10 +19,11 @@ func NewCommands(trace trace.Trace) map[string]Command {
 	trace.SetCurrentDir(currentDir)
 
 	return map[string]Command{
-		"exit": NewExit(trace),
-		"echo": NewEcho(trace),
-		"type": NewType(trace),
-		"pwd":  NewPwd(trace),
-		"cd":   NewCd(trace),
+		"exit":    NewExit(trace),
+		"echo":    NewEcho(trace),
+		"type":    NewType(trace),
+		"pwd":     NewPwd(trace),
+		"cd":      NewCd(trace),
+		"history": NewHistory(trace),
 	}
 }

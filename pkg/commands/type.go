@@ -20,7 +20,7 @@ func NewType(trace trace.Trace) *Type {
 func (c *Type) Execute(args []string) error {
 	for _, command := range args {
 		switch command {
-		case "echo", "exit", "type", "pwd":
+		case "echo", "exit", "type", "pwd", "cd", "history":
 			fmt.Printf("%s is a shell builtin\n", command)
 		default:
 			paths := strings.Split(os.Getenv("PATH"), ":")

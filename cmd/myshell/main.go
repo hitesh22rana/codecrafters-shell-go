@@ -24,6 +24,7 @@ func main() {
 			os.Exit(1)
 		}
 		input = strings.TrimSpace(input)
+		trace.AddHistory(input)
 
 		data := strings.Split(input, " ")
 		cmd := data[0]
@@ -56,6 +57,12 @@ func main() {
 
 		case "cd":
 			err := cmds["cd"].Execute(args)
+			if err != nil {
+				fmt.Println(err)
+			}
+
+		case "history":
+			err := cmds["history"].Execute(args)
 			if err != nil {
 				fmt.Println(err)
 			}
