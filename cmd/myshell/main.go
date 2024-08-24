@@ -4,9 +4,16 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
+
+	"github.com/codecrafters-io/shell-starter-go/pkg/commands"
 )
+
+var cmds = map[string]func([]string) error{
+	"exit": commands.Exit,
+	"echo": commands.Echo,
+	"type": commands.Type,
+}
 
 func main() {
 	for {
@@ -25,23 +32,13 @@ func main() {
 
 		switch cmd {
 		case "exit":
-			code, err := strconv.Atoi(args[0])
-			if err != nil {
-				os.Exit(1)
-			}
-
-			os.Exit(code)
+			cmds["exit"](args)
 
 		case "echo":
-			fmt.Println(strings.Join(args, " "))
+			cmds["echo"](args)
 
 		case "type":
-			command := args[0]
-			if command == "echo" || command == "exit" || command == "type" {
-				fmt.Printf("%s is a shell builtin\n", command)
-			} else {
-				fmt.Printf("%s: not found\n", command)
-			}
+			cmds["type"](args)
 
 		default:
 			fmt.Printf("%s: command not found\n", cmd)
