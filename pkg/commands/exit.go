@@ -4,9 +4,17 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+
+	"github.com/codecrafters-io/shell-starter-go/pkg/trace"
 )
 
-type Exit struct{}
+type Exit struct {
+	trace trace.Trace
+}
+
+func NewExit(trace trace.Trace) *Exit {
+	return &Exit{trace: trace}
+}
 
 func (c *Exit) Execute(args []string) error {
 	if len(args) != 1 {

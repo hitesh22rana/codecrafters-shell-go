@@ -2,20 +2,25 @@ package commands
 
 import (
 	"fmt"
-	"os"
+
+	"github.com/codecrafters-io/shell-starter-go/pkg/trace"
 )
 
-type Pwd struct{}
+type Pwd struct {
+	trace trace.Trace
+}
 
-func NewPwd() *Pwd {
-	return &Pwd{}
+func NewPwd(trace trace.Trace) *Pwd {
+	return &Pwd{trace: trace}
 }
 
 func (c *Pwd) Execute(args []string) error {
-	dir, err := os.Getwd()
-	if err != nil {
-		return err
+	if len(args) > 0 {
+		return fmt.Errorf("pwd: expected 0 arguments; got %d", len(args))
 	}
-	fmt.Println(dir)
+
+	currentDir := c.trace.GetCurrentDir()
+	fmt.Println(currentDir)
+
 	return nil
 }

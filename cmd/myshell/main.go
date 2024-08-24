@@ -8,10 +8,12 @@ import (
 	"strings"
 
 	"github.com/codecrafters-io/shell-starter-go/pkg/commands"
+	"github.com/codecrafters-io/shell-starter-go/pkg/trace"
 )
 
 func main() {
-	cmds := commands.NewCommands()
+	trace := trace.NewTrace()
+	cmds := commands.NewCommands(trace)
 
 	for {
 		fmt.Fprint(os.Stdout, "$ ")
@@ -29,16 +31,34 @@ func main() {
 
 		switch cmd {
 		case "exit":
-			cmds["exit"].Execute(args)
+			err := cmds["exit"].Execute(args)
+			if err != nil {
+				fmt.Println(err)
+			}
 
 		case "echo":
-			cmds["echo"].Execute(args)
+			err := cmds["echo"].Execute(args)
+			if err != nil {
+				fmt.Println(err)
+			}
 
 		case "type":
-			cmds["type"].Execute(args)
+			err := cmds["type"].Execute(args)
+			if err != nil {
+				fmt.Println(err)
+			}
 
 		case "pwd":
-			cmds["pwd"].Execute(args)
+			err := cmds["pwd"].Execute(args)
+			if err != nil {
+				fmt.Println(err)
+			}
+
+		case "cd":
+			err := cmds["cd"].Execute(args)
+			if err != nil {
+				fmt.Println(err)
+			}
 
 		default:
 			command := exec.Command(cmd, args...)

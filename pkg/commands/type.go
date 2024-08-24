@@ -5,12 +5,16 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/codecrafters-io/shell-starter-go/pkg/trace"
 )
 
-type Type struct{}
+type Type struct {
+	trace trace.Trace
+}
 
-func NewType() *Type {
-	return &Type{}
+func NewType(trace trace.Trace) *Type {
+	return &Type{trace: trace}
 }
 
 func (c *Type) Execute(args []string) error {
