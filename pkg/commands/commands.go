@@ -9,5 +9,6 @@ func NewCommands() map[string]Command {
 		"exit": &Exit{},
 		"echo": &Echo{},
 		"type": &Type{},
+		"pwd":  &Pwd{},
 	}
 }

@@ -16,7 +16,7 @@ func NewType() *Type {
 func (c *Type) Execute(args []string) error {
 	for _, command := range args {
 		switch command {
-		case "echo", "exit", "type":
+		case "echo", "exit", "type", "pwd":
 			fmt.Printf("%s is a shell builtin\n", command)
 		default:
 			paths := strings.Split(os.Getenv("PATH"), ":")

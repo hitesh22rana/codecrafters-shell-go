@@ -37,6 +37,9 @@ func main() {
 		case "type":
 			cmds["type"].Execute(args)
 
+		case "pwd":
+			cmds["pwd"].Execute(args)
+
 		default:
 			command := exec.Command(cmd, args...)
 			command.Stderr = os.Stderr
