@@ -16,6 +16,7 @@ Here's a list of the built-in commands that have been implemented so far:
 - [x] pwd
 - [x] cd
 - [x] history
+- [x] help
 
 ## Upcoming Built-in Commands
 
@@ -29,7 +30,6 @@ The following commands are planned to be implemented in the future:
 - [ ] jobs
 - [ ] fg
 - [ ] bg
-- [ ] help
 
 ## Getting Started
 
