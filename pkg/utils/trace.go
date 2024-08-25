@@ -1,30 +1,18 @@
-package trace
+package utils
 
 type Trace interface {
-	SetCurrentDir(dir string)
-	GetCurrentDir() string
 	AddHistory(command string)
 	GetHistory() []string
 }
 
 type ShellTrace struct {
-	currentDir string
-	history    []string
+	history []string
 }
 
 func NewTrace() *ShellTrace {
 	return &ShellTrace{
-		currentDir: "",
-		history:    []string{},
+		history: []string{},
 	}
-}
-
-func (m *ShellTrace) SetCurrentDir(dir string) {
-	m.currentDir = dir
-}
-
-func (m *ShellTrace) GetCurrentDir() string {
-	return m.currentDir
 }
 
 func (m *ShellTrace) AddHistory(command string) {

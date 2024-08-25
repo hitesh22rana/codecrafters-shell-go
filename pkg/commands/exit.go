@@ -4,16 +4,12 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-
-	"github.com/codecrafters-io/shell-starter-go/pkg/trace"
 )
 
-type Exit struct {
-	trace trace.Trace
-}
+type Exit struct{}
 
-func NewExit(trace trace.Trace) *Exit {
-	return &Exit{trace: trace}
+func NewExit() *Exit {
+	return &Exit{}
 }
 
 func (c *Exit) Execute(args []string) error {
@@ -28,4 +24,8 @@ func (c *Exit) Execute(args []string) error {
 
 	os.Exit(code)
 	return nil
+}
+
+func (c *Exit) Help() {
+	fmt.Println("exit: exit the shell")
 }

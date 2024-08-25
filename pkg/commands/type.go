@@ -5,22 +5,18 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/codecrafters-io/shell-starter-go/pkg/trace"
 )
 
-type Type struct {
-	trace trace.Trace
-}
+type Type struct{}
 
-func NewType(trace trace.Trace) *Type {
-	return &Type{trace: trace}
+func NewType() *Type {
+	return &Type{}
 }
 
 func (c *Type) Execute(args []string) error {
 	for _, command := range args {
 		switch command {
-		case "echo", "exit", "type", "pwd", "cd", "history":
+		case "echo", "exit", "type", "pwd", "cd", "history", "help":
 			fmt.Printf("%s is a shell builtin\n", command)
 		default:
 			paths := strings.Split(os.Getenv("PATH"), ":")
@@ -41,4 +37,8 @@ func (c *Type) Execute(args []string) error {
 	}
 
 	return nil
+}
+
+func (c *Type) Help() {
+	fmt.Println("type: describe a command type")
 }

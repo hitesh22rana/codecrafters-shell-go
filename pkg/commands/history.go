@@ -3,14 +3,14 @@ package commands
 import (
 	"fmt"
 
-	"github.com/codecrafters-io/shell-starter-go/pkg/trace"
+	"github.com/codecrafters-io/shell-starter-go/pkg/utils"
 )
 
 type History struct {
-	trace trace.Trace
+	trace utils.Trace
 }
 
-func NewHistory(trace trace.Trace) *History {
+func NewHistory(trace utils.Trace) *History {
 	return &History{trace: trace}
 }
 
@@ -25,4 +25,8 @@ func (c *History) Execute(args []string) error {
 	}
 
 	return nil
+}
+
+func (c *History) Help() {
+	fmt.Println("history: display command history")
 }

@@ -5,15 +5,15 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/codecrafters-io/shell-starter-go/pkg/trace"
+	"github.com/codecrafters-io/shell-starter-go/pkg/utils"
 )
 
 type Cd struct {
-	trace trace.Trace
+	track utils.Track
 }
 
-func NewCd(trace trace.Trace) *Cd {
-	return &Cd{trace: trace}
+func NewCd(track utils.Track) *Cd {
+	return &Cd{track: track}
 }
 
 func (c *Cd) Execute(args []string) error {
@@ -28,14 +28,18 @@ func (c *Cd) Execute(args []string) error {
 	}
 
 	if dir[0] != '/' {
-		dir = filepath.Join(c.trace.GetCurrentDir(), dir)
+		dir = filepath.Join(c.track.GetCurrentDir(), dir)
 	}
 
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
 		return fmt.Errorf("cd: %s: No such file or directory", dir)
 	}
 
-	c.trace.SetCurrentDir(dir)
+	c.track.SetCurrentDir(dir)
 
 	return nil
+}
+
+func (c *Cd) Help() {
+	fmt.Println("cd: change the current directory")
 }
