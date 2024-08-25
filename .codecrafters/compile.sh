@@ -9,4 +9,4 @@
 # Exit early if any commands fail
 set -e
 
-go build -o /tmp/shell-target cmd/myshell/*.go
+go build -o /tmp/shell-target cmd/shell/*.go

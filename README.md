@@ -1,36 +1,40 @@
 [![progress-banner](https://backend.codecrafters.io/progress/shell/339c1adf-996a-41bd-8f84-7168edea896d)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
 
-This is a starting point for Go solutions to the
 ["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
 
-In this challenge, you'll build your own POSIX compliant shell that's capable of
-interpreting shell commands, running external programs and builtin commands like
-cd, pwd, echo and more. Along the way, you'll learn about shell command parsing,
-REPLs, builtin commands, and more.
+# Project Overview
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+This project, part of the "Build Your Own X" series, focuses on implementing a basic shell from the ground up. The goal is to create a functional command-line interface that supports various built-in commands, allowing users to interact effectively with their system.
 
-# Passing the first stage
+## Implemented Built-in Commands
 
-The entry point for your `shell` implementation is in `cmd/myshell/main.go`.
-Study and uncomment the relevant code, and push your changes to pass the first
-stage:
+Here's a list of the built-in commands that have been implemented so far:
 
-```sh
-git add .
-git commit -m "pass 1st stage" # any msg
-git push origin master
-```
+- [x] exit
+- [x] echo
+- [x] type
+- [x] pwd
+- [x] cd
+- [x] history
 
-Time to move on to the next stage!
+## Upcoming Built-in Commands
 
-# Stage 2 & beyond
+The following commands are planned to be implemented in the future:
 
-Note: This section is for stages 2 and beyond.
+- [ ] alias
+- [ ] export
+- [ ] set
+- [ ] unset
+- [ ] source (or .)
+- [ ] jobs
+- [ ] fg
+- [ ] bg
+- [ ] help
 
-1. Ensure you have `go (1.19)` installed locally
-1. Run `./your_program.sh` to run your program, which is implemented in
-   `cmd/myshell/main.go`.
-1. Commit your changes and run `git push origin master` to submit your solution
-   to CodeCrafters. Test output will be streamed to your terminal.
+## Getting Started
+
+To run this shell locally, follow these steps:
+
+1. Clone the repository
+2. Navigate to the project directory
+3. Run the shell using the provided `shell.sh` script
